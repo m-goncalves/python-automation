@@ -40,5 +40,5 @@ def listDownloadedMovies(path):
 
 
 targetFolder = '/media/mjgoncalves/hd1/development/python/donwloads'
-movies = listDownloadedMovies(targetFolder)
-print(movies)
+listOfmovies = listDownloadedMovies(targetFolder)
+print(listOfmovies)
