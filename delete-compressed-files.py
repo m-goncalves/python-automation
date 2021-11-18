@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 # Functions which searches for compressed files and deletes them
 
 import re
