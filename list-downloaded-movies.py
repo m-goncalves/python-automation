@@ -9,7 +9,7 @@ def listDownloadedMovies(path):
 
     foldersList = []
     moviesList = []
-    count = 0
+    unfinishedDownloads = []
 
     os.chdir(targetFolder)
     foldersContent = os.listdir(targetFolder)
@@ -24,18 +24,23 @@ def listDownloadedMovies(path):
         if matchObjetc != None:
             moviesList.append(matchObjetc.group())
 
-    while count < len(foldersList):
-        for foldername, _, filenames in os.walk(foldersList[count]):
+    for folder in range(len(foldersList)):
+        for foldername, _, filenames in os.walk(foldersList[folder]):
             for filename in range(len(filenames)):
-                if filenames[filename].endswith('.part'):
-                    continue
 
                 matchObjetc = extensionsRegex.search(filenames[filename])
 
-                if matchObjetc != None:
+                if matchObjetc != None and foldername not in moviesList:
                     moviesList.append(foldername)
 
-        count += 1
+                if filenames[filename].endswith('.part'):
+                    unfinishedDownloads.append(foldername)
+
+    for downloads in range(len(unfinishedDownloads)):
+
+        if unfinishedDownloads[downloads] in moviesList:
+            moviesList.remove(unfinishedDownloads[downloads])
+
     return moviesList
 
 
