@@ -15,6 +15,8 @@ def listDownloadedMovies(path):
     foldersContent = os.listdir(targetFolder)
     extensionsRegex = re.compile(r'.*\.avi|.*\.mkv|.*\.mp4')
 
+    # Loops through foldersContent and adds directories to
+    # foldersList and movies to moviesList.
     for item in range(len(foldersContent)):
         if os.path.isdir(foldersContent[item]):
             foldersList.append(foldersContent[item])
@@ -24,6 +26,9 @@ def listDownloadedMovies(path):
         if matchObject != None:
             moviesList.append(matchObject.group())
 
+    # Loops through foldersList and checks to see which folders contains
+    # finished movie downloads and adds them to moviesList. Unfinished movies
+    # downloads are added to unfinishedDownloads.
     for folder in range(len(foldersList)):
         for foldername, _, filenames in os.walk(foldersList[folder]):
             for filename in range(len(filenames)):
@@ -36,8 +41,9 @@ def listDownloadedMovies(path):
                 if filenames[filename].endswith('.part'):
                     unfinishedDownloads.append(foldername)
 
+    # Checks to see if there are folders with unfinished downloads in
+    # in the moviesList and removes them.
     for downloads in range(len(unfinishedDownloads)):
-
         if unfinishedDownloads[downloads] in moviesList:
             moviesList.remove(unfinishedDownloads[downloads])
 
