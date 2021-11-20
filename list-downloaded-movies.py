@@ -19,18 +19,18 @@ def listDownloadedMovies(path):
         if os.path.isdir(foldersContent[item]):
             foldersList.append(foldersContent[item])
 
-        matchObjetc = extensionsRegex.search(foldersContent[item])
+        matchObject = extensionsRegex.search(foldersContent[item])
 
-        if matchObjetc != None:
-            moviesList.append(matchObjetc.group())
+        if matchObject != None:
+            moviesList.append(matchObject.group())
 
     for folder in range(len(foldersList)):
         for foldername, _, filenames in os.walk(foldersList[folder]):
             for filename in range(len(filenames)):
 
-                matchObjetc = extensionsRegex.search(filenames[filename])
+                matchObject = extensionsRegex.search(filenames[filename])
 
-                if matchObjetc != None and foldername not in moviesList:
+                if matchObject != None and foldername not in moviesList:
                     moviesList.append(foldername)
 
                 if filenames[filename].endswith('.part'):
