@@ -12,8 +12,8 @@ def listDownloadedMovies(path):
     moviesList = []
     unfinishedDownloads = []
 
-    os.chdir(targetFolder)
-    foldersContent = os.listdir(targetFolder)
+    os.chdir(downloadsFolder)
+    foldersContent = os.listdir(downloadsFolder)
     extensionsRegex = re.compile(r'.*\.avi|.*\.mkv|.*\.mp4')
 
     # Loops through foldersContent and adds directories to
@@ -53,15 +53,14 @@ def listDownloadedMovies(path):
 # Moves completely donwloaded movies to a specified folder
 
 
-def moveFiles(destination, moviesList):
+def moveFiles(destinationFolder, moviesList):
 
-    os.chdir(targetFolder)
+    os.chdir(downloadsFolder)
     for movie in range(len(moviesList)):
-        shutil.move(moviesList[movie], destination)
+        shutil.move(moviesList[movie], destinationFolder)
 
 
-targetFolder = '/media/mjgoncalves/hd1/development/python/donwloads'
-destination = '/media/mjgoncalves/hd1/development/python/destination'
-listOfmovies = listDownloadedMovies(targetFolder)
-print(listOfmovies)
-moveFiles(destination, listOfmovies)
+downloadsFolder = '/media/mjgoncalves/hd1/development/python/donwloads'
+destinationFolder = '/media/mjgoncalves/hd1/development/python/destination'
+listOfmovies = listDownloadedMovies(downloadsFolder)
+moveFiles(destinationFolder, listOfmovies)
