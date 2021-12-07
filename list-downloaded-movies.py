@@ -3,6 +3,7 @@
 
 import os
 import re
+import shutil
 
 
 def listDownloadedMovies(path):
@@ -27,7 +28,7 @@ def listDownloadedMovies(path):
             moviesList.append(matchObject.group())
 
     # Loops through foldersList and checks to see which folders contains
-    # finished movie downloads and adds them to moviesList. Unfinished movies
+    # finished movie downloads and adds them to moviesList. Unfinished movie
     # downloads are added to unfinishedDownloads.
     for folder in range(len(foldersList)):
         for foldername, _, filenames in os.walk(foldersList[folder]):
@@ -49,7 +50,18 @@ def listDownloadedMovies(path):
 
     return moviesList
 
+# Moves completely donwloaded movies to a specified folder
+
+
+def moveFiles(destination, moviesList):
+
+    os.chdir(targetFolder)
+    for movie in range(len(moviesList)):
+        shutil.move(moviesList[movie], destination)
+
 
 targetFolder = '/media/mjgoncalves/hd1/development/python/donwloads'
+destination = '/media/mjgoncalves/hd1/development/python/destination'
 listOfmovies = listDownloadedMovies(targetFolder)
 print(listOfmovies)
+moveFiles(destination, listOfmovies)
