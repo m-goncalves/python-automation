@@ -7,7 +7,7 @@ import os
 
 def findCompressedFiles(path):
 
-    filesRegex = re.compile(r'.*\.zip|.*\.rar|.*\.tgz|.*\.tar\.gz')
+    filesRegex = re.compile(r'.*\.deb|.*\.nfo|.*\.rar|.*\.srt|.*\.torrent|.*\.tgz|.*\.tar\.gz|.*\.zip')
     compressedFiles = []
     allFiles = os.listdir(path)
 
