@@ -53,8 +53,6 @@ def listDownloadedMovies(path):
 
     return moviesList
 
-# Moves completely donwloaded movies to a specified folder
-
 
 def moveFiles(destinationFolder, moviesList):
 
